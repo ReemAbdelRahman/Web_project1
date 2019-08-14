@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href = "{{url_for('static',filename= 'styles/styles.css')}}">
   <title> book </title>
 </head>
-  <body>
-    <form method = "post" action = "{{url_for('page1_login')}}">
-      <button type="submit"> Log out </button>
+  <body class = "inputform">
+    <div class = "logout">
+      <form method = "post">
+      <button class = "button" formaction = "{{url_for('page1_login')}}"> Log out </button>
     </form>
+  </div>
     <ul>
     <li> <h3> Title: {{book.title}} </h3> </li>
     <li> <h3> Author: {{book.author}} </h3> </li>
     <li> <h3> Year: {{book.year}} </h3></li>
     <li> <h3> ISBN: {{book.isbn}} </h3></li>
     </ul>
+    <div class = "left">
     <h3>Users Rating</h3>
     {% for i in range(average_rating|int) %}
     &starf;
@@ -20,20 +24,31 @@
     {% for i in range (5-average_rating|int) %}
     &star;
    {% endfor %}
-
-    <p> {{average_rating}} average based on {{work_ratings_count}} reviews.</p>
+ </div>
+    <p> <h4>{{average_rating}} average based on {{work_ratings_count}} reviews.</h4></p>
+    <ul>
     {% for r in rev %}
-    {{r.user_username}}: {{r.rating}}
-    {{r.review}}
+    <li>
+    {{r.user_username}}:
+    <span>{{r.rating}}</span>
+    <span> {{r.review}} <span>
+    </li>
     <br>
     {% endfor %}
-    Write a review:
-    <br>
+  </ul>
+  <div class = "left">
+    <h4>Rate this book:</h4>
     <form method = "post">
         <input type = "range" name = "points" min = "0" max ="5">
-        <button formaction="{{url_for('post_review', book_title = book.title, book_isbn = book.isbn)}}"> Submit points </button>
-        <textarea name="review" width=40% height=20% type = "text"> type your review here!</textarea>
-        <button formaction="{{url_for ('post_review', book_title = book.title, book_isbn = book.isbn)}}"> Post</button>
+        <button class = "button" formaction="{{url_for('post_review', book_title = book.title, book_isbn = book.isbn)}}"> Submit points </button>
+    </div>
+        <div>
+          <h4>Write a review:</h4>
+          <textarea white-space ="pre" name="review" rows="4" cols="70" type = "text"> type your review here!</textarea>
+           <p></p>
+          <button class = "button"  formaction="{{url_for ('post_review', book_title = book.title, book_isbn = book.isbn)}}"> Post</button>
+
+        </div>
       </form>
     </body>
 </html>

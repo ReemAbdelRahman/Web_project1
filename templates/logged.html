@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href = "{{url_for('static',filename= 'styles/styles.css')}}">
     <title>Search</title>
   </head>
-  <body>
-    <form method = "post">
-      <input type="text" name= "isbn" placeholder="search by isbn">
-      <input type="text" name= "title" placeholder="search by title">
-      <input type="text" name= "author" placeholder="search by author">
-      <button type = "submit" formaction="{{url_for('search')}}"> Search! </button>
+  <body class = "inputform">
+    <form class = "form" method = "post">
+      <input type="text" name= "author" placeholder="Search by author/title/isbn">
+      <button class = "button" type = "submit" formaction="{{url_for('search')}}"> Search! </button>
     </form>
-    <form method = "post" action = "{{url_for('page1_login')}}">
-      <button type="submit"> Log out </button>
+    <div class = "logout">
+      <form method = "post">
+      <button class = "button" formaction = "{{url_for('page1_login')}}"> Log out </button>
     </form>
+  </div>
     {% if found > 0 %}
+    <div class = "list">
     <h2> Here are the books that match your search</h2>
-    <ul>
+    <ol>
     {% for book in books_found %}
     <li>
       <a href = "{{url_for('book',book_title = book.title, book_isbn = book.isbn)}}">
-        {{book.title}} written by {{book.author}} with ISBN: {{book.isbn}}
+        {{book.title}}
+        <span> By: {{book.author}}  </span>
+          <span>ISBN: {{book.isbn}}  </span>
       </a>
     </li>
+    <p></p>
     {% endfor %}
+    </ol>
     {% elif found == 0%}
     <h3> We found no books with the specified creiteria! </h3>
     <h4> Please try again! </h4>
     {% endif %}
+    </div>
   </body>
 </html>

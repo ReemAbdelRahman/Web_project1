@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href = "{{url_for('static',filename= 'styles/styles.css')}}">
   <title> {% block title %}{% endblock %} </title>
-  <link rel="stylesheet" href = "{{ url_for('static', filename='styles.css') }}">
 </head>
-  <body>
+  <body  class = "inputform">
+    <div class = "form">
     <form>
-      <button type = "submit" formaction="{{url_for('page1_register')}}">Register</button>
-      <button type = "submit" formaction="{{url_for('page1_login')}}">Log in</button>
+      <button id = "login_button" class = "button" background-color = "black" type = "submit" formaction="{{url_for('page1_register')}}">Register</button>
+      <button id = "register_button" class = "button" type = "submit" formaction="{{url_for('page1_login')}}">Log in</button>
       </form>
       {% block body %}
       {% endblock %}
+    </div>
     </body>
 </html>

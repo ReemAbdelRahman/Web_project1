@@ -3,15 +3,21 @@
 {% block title %} Register {% endblock %}
 
 {% block body %}
+<div class = "reg_form">
 <form action ="{{url_for('register')}}" method = "post">
   <label for = "Name"><b> Name </b></label>
-  <input type = "text" name = "Name" placeholder="Full Name">
+    <input type = "text" name = "Name" placeholder="Full Name">
+    <div class = "reg_form">
   <label for="username"><b>Username</b></label>
-  <input type = "text" name = "username" placeholder="username">
+    <input type = "text" name = "username" placeholder="username">
+    </div>
+    <div class = "reg_form">
   <label for="password"><b>Password</b></label>
-  <input type = "password" name = "password" placeholder="password">
-    <button type = "submit"> Register </button>
+    <input type = "password" name = "password" placeholder="password">
+    </div>
+      <button class = "button" type = "submit"> Register </button>
   </form>
+  </div>
   {% if exists_u > 0 %}
   <h4> username already exists </h4>
   <h5> please try another username </h5>
