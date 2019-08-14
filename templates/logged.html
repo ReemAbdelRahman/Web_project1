@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Search</title>
+  </head>
+  <body>
+    <form method = "post">
+      <input type="text" name= "isbn" placeholder="search by isbn">
+      <input type="text" name= "title" placeholder="search by title">
+      <input type="text" name= "author" placeholder="search by author">
+      <button type = "submit" formaction="{{url_for('search')}}"> Search! </button>
+    </form>
+    <form method = "post" action = "{{url_for('page1_login')}}">
+      <button type="submit"> Log out </button>
+    </form>
+    {% if found > 0 %}
+    <h2> Here are the books that match your search</h2>
+    <ul>
+    {% for book in books_found %}
+    <li>
+      <a href = "{{url_for('book',book_title = book.title, book_isbn = book.isbn)}}">
+        {{book.title}} written by {{book.author}} with ISBN: {{book.isbn}}
+      </a>
+    </li>
+    {% endfor %}
+    {% elif found == 0%}
+    <h3> We found no books with the specified creiteria! </h3>
+    <h4> Please try again! </h4>
+    {% endif %}
+  </body>
+</html>

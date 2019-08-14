@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> {% block title %}{% endblock %} </title>
+  <link rel="stylesheet" href = "{{ url_for('static', filename='styles.css') }}">
+</head>
+  <body>
+    <form>
+      <button type = "submit" formaction="{{url_for('page1_register')}}">Register</button>
+      <button type = "submit" formaction="{{url_for('page1_login')}}">Log in</button>
+      </form>
+      {% block body %}
+      {% endblock %}
+    </body>
+</html>

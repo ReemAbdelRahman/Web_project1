@@ -1,0 +1,23 @@
+{% extends "page1.html" %}
+
+{% block title %} Register {% endblock %}
+
+{% block body %}
+<form action ="{{url_for('register')}}" method = "post">
+  <label for = "Name"><b> Name </b></label>
+  <input type = "text" name = "Name" placeholder="Full Name">
+  <label for="username"><b>Username</b></label>
+  <input type = "text" name = "username" placeholder="username">
+  <label for="password"><b>Password</b></label>
+  <input type = "password" name = "password" placeholder="password">
+    <button type = "submit"> Register </button>
+  </form>
+  {% if exists_u > 0 %}
+  <h4> username already exists </h4>
+  <h5> please try another username </h5>
+  {% endif %}
+  {% if exists_p > 0 %}
+  <h4> password is not correct! </h4>
+  <h5> please try another password </h5>
+  {% endif %}
+{% endblock %}

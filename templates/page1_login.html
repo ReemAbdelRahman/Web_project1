@@ -1,0 +1,18 @@
+{% extends "page1.html" %}
+
+{% block title %} Log in {% endblock %}
+
+{% block body %}
+<form action ="{{url_for('login')}}" method = "post">
+  <label for="username"><b>Username</b></label>
+  <input type = "text" name = "username" placeholder="username">
+  <label for="password"><b>Password</b></label>
+  <input type = "password" name = "password" placeholder="password">
+  <button type = "submit"> Log in </button>
+  </form>
+  {% if exists == 0 %}
+   <h5> username or/and password are not correct!</h5>
+   <br>
+   <h5> New user? Register <a href = "{{url_for('page1_register')}}" > Here</a>
+   {% endif %}
+{% endblock %}
